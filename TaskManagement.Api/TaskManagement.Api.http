@@ -1,0 +1,48 @@
+@base = http://localhost:5000
+
+### Get all tasks (paged)
+GET {{base}}/api/tasks?page=1&pageSize=10
+
+### Filter by status + search + sort
+GET {{base}}/api/tasks?status=Todo&search=api&sortBy=dueDate&sortOrder=asc
+
+### Get task stats
+GET {{base}}/api/tasks/stats
+
+### Get a single task
+GET {{base}}/api/tasks/1
+
+### Create a task
+POST {{base}}/api/tasks
+Content-Type: application/json
+
+{
+  "title": "Write documentation",
+  "description": "Document all endpoints in the README",
+  "status": "Todo",
+  "priority": "High",
+  "dueDate": "2026-11-01T00:00:00Z"
+}
+
+### Fully replace a task
+PUT {{base}}/api/tasks/1
+Content-Type: application/json
+
+{
+  "title": "Write documentation (updated)",
+  "description": "Updated description",
+  "status": "InProgress",
+  "priority": "High",
+  "dueDate": "2026-11-05T00:00:00Z"
+}
+
+### Change only the status
+PATCH {{base}}/api/tasks/1/status
+Content-Type: application/json
+
+{
+  "status": "Done"
+}
+
+### Delete a task
+DELETE {{base}}/api/tasks/1
